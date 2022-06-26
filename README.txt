@@ -1,0 +1,1 @@
+Astronomy Picture of the Day Date Range: 1995-06-16 - present
