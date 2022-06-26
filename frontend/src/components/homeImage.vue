@@ -37,7 +37,7 @@
       }
     },
     async mounted() {   // On load (mounted) requests today's image from server and sets it as imageURL
-      const response = await axios.get('http://localhost:5000');
+      const response = await axios.get(process.env.SERVER);
       this.imageURL = response.data.hdurl;
       this.imageDescription = response.data.explanation;
       this.todaysDate = response.data.date;
@@ -49,7 +49,7 @@
         if (input != undefined && input.match(checkExpression)) {
           console.log(`Date: ${input} - Searching for image...`)
           this.$el.querySelector('#userInput').setCustomValidity('');
-          const response = await axios.post('http://localhost:5000', {
+          const response = await axios.post(process.env.SERVER, {
           date: input
           });
           console.log(response.data);
