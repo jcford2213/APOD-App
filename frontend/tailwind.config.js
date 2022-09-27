@@ -5,13 +5,12 @@ module.exports = {
   ],
   theme: {
     colors: {
-      primary: '#0B3D91',
-      primaryLight: '#105bd8',
-      secondary: '#dd361c',
-      secondaryDark: '#c62d1f',
-      colorBase: '#212121',
-      colorGrayLight: '#aeb0b5',
-      colorGrayLightest: '#f1f1f1'
+      textPrimary: '#FFFFFF',
+      darkGrey: '#222222',
+      lightGrey: '#6B6B6B',
+      nasaBlue: '#0B3D91',
+      nasaRed: '#FC3D21',
+      nasaWhite: '#FFFFFF'
     },
     extend: {},
   },

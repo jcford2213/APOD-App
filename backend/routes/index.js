@@ -1,22 +1,32 @@
 // DEPENDENCIES & IMPORTS
 import express from 'express';
-import { getTodaysImage, getNewImage } from '../controllers/index.js';
+import { getTodaysImage, getNewImage } from '../controllers/getImages.js';
 
 // Set up router
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-  const image = await getTodaysImage(); // Gets the nasa image of the day url
+  const image = await getTodaysImage(); // Returns an object. Gets todays APOD data 
   console.log(`Sending today's image`);
-  res.send(image); 
+  res.send(image); // Sends an object
 });
 
 router.post('/', async (req, res) => {
   const data = req.body;
-  console.log(`From the server ${data.date}`);
-  const image = await getNewImage(data.date);
-  console.log(`From /Routes/index.js \n -- New Image HDURL is: ${image.hdurl} \n URL is ${image.url}`);
-  res.send(image);
+  if (data.date === undefined) {  
+    res.send('undefined date: from backend/routes/index.js')
+  }
+  else {
+    console.log(`data = ${data.date}; from backend/routes/index.js ln20`);
+    try {
+      const image = await getNewImage(data.date); // Sends request to NASA's api for specific date
+      console.log(` Image HDURL is: ${image.hdurl}\n  Image URL is ${image.url}\n Image mediatype is ${image.mediaType}\n/router/index.js ln23`);
+      res.send(image);
+    }
+    catch (err) {
+      res.send('Error connecting to NASA API');
+    }
+  }
 })
 
 
