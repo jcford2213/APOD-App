@@ -45,12 +45,12 @@ App Setup
           npm Install
         ```
       - Backend
-        - ```
-            cd ../backend
-          ```
-        - ```
-            npm Install
-          ```
+         ```
+          cd ../backend
+        ```
+        ```
+          npm Install
+        ```
     - Setup .env File
       - Create a .env file in the APOD-APP/backend folder
       - On the first line define the API_KEY
