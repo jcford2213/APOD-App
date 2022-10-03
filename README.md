@@ -37,16 +37,16 @@ App Setup
   - In VS Code open the APOD-APP folder
   - Open a terminal and make sure the working directory is \APOD-APP
   - Install Dependencies in the fronend and backend folders
-    - Frontend
+    - Frontend (from /APOD-APP)
       ```
         cd frontend
       ```
       ```
         npm Install
       ```
-    - Backend
+    - Backend (from /APOD-APP)
       ```
-        cd ../backend
+        cd backend
       ```
       ```
         npm Install
