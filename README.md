@@ -1,6 +1,9 @@
 Title:
   A NASA's Astronomy Picture of the Day (APOD) Website
 
+Version:
+  1.0.2 - Mobile friendly only prototype
+
 Descirption:
   The goal of this project is to build a modern looking NASA APOD website using NASA's APOD API 
 
