@@ -38,12 +38,12 @@ App Setup
     - Open a terminal and make sure the working directory is \APOD-APP
     - Install Dependencies in the fronend and backend folders
       - Frontend
-        - ```
-            cd frontend
-          ```
-        - ```
-            npm Install
-          ```
+        ```
+          cd frontend
+        ```
+       ```
+          npm Install
+        ```
       - Backend
         - ```
             cd ../backend
