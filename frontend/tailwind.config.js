@@ -12,6 +12,12 @@ module.exports = {
       nasaRed: '#FC3D21',
       nasaWhite: '#FFFFFF'
     },
+    screens: {
+      'tablet': '500px',
+      // @media (min-width: 500px)
+      'Desktop': '800px'
+      // @media (min-width: 800px)
+    },
     extend: {},
   },
   plugins: [],

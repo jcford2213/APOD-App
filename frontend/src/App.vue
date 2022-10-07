@@ -1,23 +1,31 @@
 <template id="app">
-  <div id="windowWrapper" class="sticky min-w-[350px] bg-darkGrey">
+  <div id="windowWrapper" class="sticky min-w-[250px] bg-darkGrey">
 
     <div id="mobileNav" v-if="mobileView" class="flex flex-col items-end pt-3 absolute right-3">
-      <div class="flex flex-row gap-4 items-center justify-between mb-3">
-        <searchComp id="navSearchComp" class="caret-nasaBlue text-nasaBlue z-[1]" />
-        <button id="mobileNavButton" @click="toggleNavVisibility" class="z-[1]">
-          <i id="fa-bars" v-if="!mobileNavVisibility" class="fas fa-bars text-nasaBlue"></i>
-          <i id="fa-x" v-if="mobileNavVisibility" class="fas fa-sharp fa-solid fa-x text-nasaWhite"></i>
-        </button>
-      </div>
-      <mobileNavView @newPageLoading="shiftWindow"/>
+      <button id="mobileNavButton" @click="toggleNavVisibility">
+        <i id="fa-x" class="fas fa-sharp fa-solid fa-x text-nasaWhite"></i>
+      </button>
+      <ul id="nav" class="h-fit w-fit text-end space-y-[10px]">
+        <li><router-link :to="{ name: 'homeView' }" @click="this.$emit('newPageLoading')" class="font-bold text:base text-nasaWhite">Home</router-link></li>
+        <li><router-link :to="{ name: 'galleryView' }" @click="this.$emit('newPageLoading')" class="font-bold text:base text-nasaWhite">Gallery</router-link></li>
+        <li><router-link :to="{ name: 'aboutView' }" @click="this.$emit('newPageLoading')" class="font-bold text:base text-nasaWhite">About</router-link></li>
+      </ul>
     </div>
 
     <div id="contentWrapper" class="flex flex-col h-screen w-full overflow-scroll bg-[#6b6b6b]">
       <header id="header" class="flex justify-between place-items-center px-2 bg-nasaWhite">
-        <router-link id="appLogo" :to="{ name: 'homeView' }" class="font-bold text:base md:text-3xl lg:text-4xl text-nasaBlue">NASA's Astronomy<br>Picture of the Day</router-link>
-        <nav id="nav" v-if="!mobileView" class="flex flex-row place-tems center">
-          <searchComp class="caret-nasaBlue text-nasaBlue" />
-          <navView />
+        <router-link id="appLogo" :to="{ name: 'homeView' }" class="font-bold text:base text-nasaBlue">NASA's Astronomy<br>Picture of the Day</router-link>
+        <nav id="nav" class="flex flex-row place-items-center justify-end">
+          <searchComp class="mr-[10px] caret-nasaBlue text-nasaBlue" />
+          <!--MOBILE NAVIGATION-->
+          <button id="mobileNavButton" v-if="mobileView" @click="toggleNavVisibility">
+            <i id="fa-bars" v-if="!mobileNavVisibility" class="fas fa-bars text-nasaBlue"></i>
+          </button>
+          <!----DESKTOP NAVIGATION-->
+          <ul v-if="!mobileView" class="flex flex-row gap-5 w-full justify-end items-center">
+            <router-link :to="{ name: 'galleryView' }" class="font-bold text:base text-nasaBlue">Gallery</router-link>
+            <router-link :to="{ name: 'aboutView' }" class="font-bold text:base text-nasaBlue">About</router-link>
+          </ul>
         </nav>
       </header>
       <div id="routerWrapper" class="flex-grow w-full">
@@ -35,10 +43,8 @@
 <script>  // <script setup> is recommended syntax for SFC's. Provides several advantages over <script>
 // COMPONENTS
 import podView from './views/podView.vue';
-import navView from './views/navView.vue'
 import aboutView from './views/aboutView.vue';
 import galleryView from './views/galleryView.vue';
-import mobileNavView from './views/mobileNavView.vue';
 import searchComp from './components/searchComp.vue';
 
 // IMPORTS & DEPENDENCIES
@@ -52,9 +58,7 @@ export default {
   components: {
     podView,
     galleryView,
-    navView,
     aboutView,
-    mobileNavView,
     searchComp
 },
 // DATA
@@ -99,6 +103,7 @@ export default {
           this.mobileNavVisibility = false; // Hides nav on click
         break;
       }
+      console.log(`mobileNavVisibility = ${this.mobileNavVisibility}`)
     },
     setUrlPath(index) {
       console.log(this.dates[index].string)
@@ -111,11 +116,11 @@ export default {
       switch(value) {
         case true: 
           this.$el.querySelector('#contentWrapper').style = 'transform: translateX(-150px); transition: 1s transform cubic-bezier(0,.12,.14,1)';
-          this.$el.querySelector('#navSearchComp').style = 'transform: translateX(-150px); transition: 1s transform cubic-bezier(0,.12,.14,1)';
+          //this.$el.querySelector('#navSearchComp').style = 'transform: translateX(-150px); transition: 1s transform cubic-bezier(0,.12,.14,1)';
           break;
         case false: 
           this.$el.querySelector('#contentWrapper').style = 'transform: translateX(0px); transition: 1s transform cubic-bezier(0,.12,.14,1)';
-          this.$el.querySelector('#navSearchComp').style = 'transform: translateX(0px); transition: 1s transform cubic-bezier(0,.12,.14,1)';
+          //this.$el.querySelector('#navSearchComp').style = 'transform: translateX(0px); transition: 1s transform cubic-bezier(0,.12,.14,1)';
           break;
       }
     }
