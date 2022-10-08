@@ -1,5 +1,5 @@
 <template id="app">
-  <div id="windowWrapper" class="sticky min-w-[250px] bg-darkGrey">
+  <div id="windowWrapper" class="sticky min-w-[350px] bg-darkGrey">
 
     <div id="mobileNav" v-if="mobileView" class="flex flex-col items-end pt-3 absolute right-3">
       <button id="mobileNavButton" @click="toggleNavVisibility">
@@ -13,10 +13,10 @@
     </div>
 
     <div id="contentWrapper" class="flex flex-col h-screen w-full overflow-scroll bg-[#6b6b6b]">
-      <header id="header" class="flex justify-between place-items-center px-2 bg-nasaWhite">
-        <router-link id="appLogo" :to="{ name: 'homeView' }" class="font-bold text:base text-nasaBlue">NASA's Astronomy<br>Picture of the Day</router-link>
+      <header id="header" class="flex flex-row justify-between place-items-center px-2 bg-nasaWhite">
+        <router-link id="appLogo" :to="{ name: 'homeView' }" class="min-w-[143px] font-bold text:base text-nasaBlue">NASA's Astronomy<br>Picture of the Day</router-link>
         <nav id="nav" class="flex flex-row place-items-center justify-end">
-          <searchComp class="mr-[10px] caret-nasaBlue text-nasaBlue" />
+          <searchComp class="mx-[10px] caret-nasaBlue text-nasaBlue" />
           <!--MOBILE NAVIGATION-->
           <button id="mobileNavButton" v-if="mobileView" @click="toggleNavVisibility">
             <i id="fa-bars" v-if="!mobileNavVisibility" class="fas fa-bars text-nasaBlue"></i>

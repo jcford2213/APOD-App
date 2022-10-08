@@ -15,7 +15,9 @@ module.exports = {
     screens: {
       'tablet': '500px',
       // @media (min-width: 500px)
-      'Desktop': '800px'
+      'largeTablet': '650px',
+      // @media (min-width: 650px)
+      'desktop': '800px'
       // @media (min-width: 800px)
     },
     extend: {},

@@ -1,25 +1,24 @@
 <template>
-  <div id="wrapper">
-    <div id="dateArrowsBar" class="flex flex-row items-center h-[30px] border-t-[2px] border-nasaBlue">
+  <div id="dateArrowsBar" class="flex flex-row items-center h-[30px] border-t-[2px] border-nasaBlue">
       <button id="toYesterdaysImage" :disabled="dateIndex === (dates.length - 1)" @click="changeIndex(1)" class="disabled:opacity-75 h-full w-[15%] bg-nasaBlue text-[white] text-center">&#60</button>
-      <p id="podDate" class="flex-grow text-center font-bold text-sm text-textPrimary">{{ podDate }}</p>
+      <p id="podDate" class="flex-grow text-center font-bold text-sm text-textPrimary tablet:text-base">{{ podDate }}</p>
       <button id="toTomorrowsImage" :disabled="dateIndex === 0" @click="changeIndex(-1)" class="disabled:opacity-75 h-full w-[15%] bg-nasaBlue text-[white] text-center">&#62</button>
     </div>
-
-    <div id="media" class="min-h-[200px] bg-darkGrey">
-      <mediaComp v-if="imageExists" :isImage="isImage" :podURL="podURL" :podHDURL="podHDURL" />
-      <p id="noImageMessage" v-if="!imageExists" class="text-center text-nasaWhite">{{ noImageMessage }}</p>
+  <div id="wrapper" class="desktop:grid desktop:grid-cols-[auto_430px]">
+    <div id="media" class="desktop:row-span-2 desktop:self-center">
+      <mediaComp v-if="imageExists" :isImage="isImage" :podURL="podURL" :podHDURL="podHDURL" class="desktop:max-h-[816px]"/>
+      <p id="noImageMessage" v-if="!imageExists" class="h-[200px] bg-darkGrey text-center text-nasaWhite">{{ noImageMessage }}</p>
     </div>
+    <div id="descriptionContainer" class="desktop:col-start-2 desktop:justify-self-end">
+      <p id="podTitle" class="h-fit text-center font-bold pt-[10px] text-textPrimary tablet:text-lg desktop:row-start-1 desktop:col-start-2">{{ podTitle }}</p>
 
-    <p id="podTitle" class="text-center font-bold text-sm pt-[10px] text-textPrimary">{{ podTitle }}</p>
-
-    <div id="hrDescriptionBar" class="flex py-[10px]">
-      <hr class="flex-grow self-center text-primary w-full border-[1px] border-nasaBlue">
-      <h4 class="flex-none px-2 font-bold text:sm lg:text-lg text-textPrimary">Description</h4>
-      <hr class="flex-grow self-center text-primary w-full border-[1px] border-nasaBlue">
+      <div id="hrDescriptionBar" class="flex py-[10px] text-sm">
+        <hr class="flex-grow self-center text-primary w-full border-[1px] border-nasaBlue">
+        <h4 class="flex-none px-2 font-bold text:sm text-textPrimary desktop:text-lg">Description</h4>
+        <hr class="flex-grow self-center text-primary w-full border-[1px] border-nasaBlue">
+      </div>
+      <p id="podDescription" class="px-2 text-sm font-medium indent-8 text-textPrimary largeTablet:text-base">{{ podDescription }}</p>
     </div>
-
-    <p id="podDescription" class="px-2 text-sm lg:text-base font-medium indent-8 text-textPrimary">{{ podDescription }}</p>
   </div>
 </template>
 
