@@ -31,22 +31,8 @@ Acquire Free NASA API Key:
 App Setup on Local Machine
   - Clone the repository to you local machine
   - Open the project root APOD-APP folder in VS Code
-  - Open a VS Code terminal. Make sure the working directory is APOD-APP\
-  - Install dependencies in the fronend and backend folders:
-    - Frontend (from /APOD-APP)
-      ```
-        cd frontend
-      ```
-      ```
-        npm install
-      ```
-    - Backend (from /APOD-APP)
-      ```
-        cd backend
-      ```
-      ```
-        npm install
-      ```
+  - Open a VS Code terminal. Make sure the working directory is \APOD-APP
+  - Run npm install in both APOD-APP\fronend  APOD_APP\backend directories
   - Setup .env files
     - In \backend create a .env file
     - Create the keywords API_KEY and PORT
@@ -67,7 +53,7 @@ App Setup on Local Machine
 Run App
   - Open terminal and make sure the working directory is \APOD-APP
   - Start the Node.js server
-    - From /APOD-APP change directory to /backend
+    - In \backend run 
       ```
         cd backend
       ```
