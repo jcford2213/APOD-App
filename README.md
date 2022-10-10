@@ -28,36 +28,41 @@ Acquire Free NASA API Key:
   - Click Signup
   - An API Key will be generated and displayed when the page loads
     
-App Setup
-  This program has been written using the VS Code editor
-  These instructions are written for the VS Code editor and its internal terminal using Windows Powershell
-  However, you should be able to use any editor and terminal you like.
-  To setup and run the app follow these instructions: 
+App Setup on Local Machine
   - Clone the repository to you local machine
-  - In VS Code open the APOD-APP folder
-  - Open a terminal and make sure the working directory is \APOD-APP
-  - Install Dependencies in the fronend and backend folders
+  - Open the project root APOD-APP folder in VS Code
+  - Open a VS Code terminal. Make sure the working directory is APOD-APP\
+  - Install dependencies in the fronend and backend folders:
     - Frontend (from /APOD-APP)
       ```
         cd frontend
       ```
       ```
-        npm Install
+        npm install
       ```
     - Backend (from /APOD-APP)
       ```
         cd backend
       ```
       ```
-        npm Install
+        npm install
       ```
-  - Setup .env File
-    - Create a .env file in the APOD-APP/backend folder
-    - On the first line define the API_KEY
+  - Setup .env files
+    - In \backend create a .env file
+    - Create the keywords API_KEY and PORT
       ```env
-        API_KEY={YOUR_KEY}
+        API_KEY={your nasa api key}
+        SERVER_PORT={the server's port}
       ```
     - Save and close the .env file
+
+    - In \frontend create a .env file
+    - Create the keyword VITE_SERVER_PORT
+      ```env
+       VITE_SERVER_PORT={the server's port}
+      ```
+    - Save and close the .env file
+
 
 Run App
   - Open terminal and make sure the working directory is \APOD-APP

@@ -17,7 +17,7 @@ router.post('/', async (req, res) => {
     res.send('undefined date: from backend/routes/index.js')
   }
   else {
-    console.log(`data = ${data.date}; from backend/routes/index.js ln20`);
+    console.log(`date sent from frontend = ${data.date}; backend/routes/index.js ln20`);
     try {
       const image = await getNewImage(data.date); // Sends request to NASA's api for specific date
       console.log(` Image HDURL is: ${image.hdurl}\n  Image URL is ${image.url}\n Image mediatype is ${image.mediaType}\n/router/index.js ln23`);

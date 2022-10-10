@@ -3,8 +3,8 @@ const getSearchImage = async input => {
   if (input != undefined && input.match(checkExpression)) {
     console.log(`Date: ${input} - Searching for image...`)
     this.$el.querySelector('#userInput').setCustomValidity('');
-    const response = await axios.post('http://localhost:5000', {  // Send post to server
-    date: input
+    const response = await axios.post(`http://localhost:${import.meta.env.VITESERVER_PORT}`, {  // Send post to server
+      date: input
     });
     console.log(response.data);
     switch (response.data.hdurl) {

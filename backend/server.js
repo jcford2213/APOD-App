@@ -14,7 +14,7 @@ app.get('/', indexRouter);
 app.post('/', indexRouter);
 
 // Set App to listen on port 5000
-const port = process.env.PORT || 5000;  // Set whatever port you want in .env file. Else default is 5000
+const port = process.env.SERVER_PORT;
 app.listen(port, () => {
   console.log(`Server listneing on port ${port}`);
 }) 
