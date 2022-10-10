@@ -32,7 +32,7 @@ App Setup on Local Machine
   - Clone the repository to you local machine
   - Open the project root APOD-APP folder in VS Code
   - Open a VS Code terminal. Make sure the working directory is \APOD-APP
-  - Run npm install in both APOD-APP\fronend  APOD_APP\backend directories
+  - Run '''npm install''' in both APOD-APP\fronend  APOD_APP\backend directories
   - Setup .env files
     - In \backend create a .env file
     - Create the keywords API_KEY and PORT
