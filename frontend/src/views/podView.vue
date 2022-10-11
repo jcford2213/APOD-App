@@ -5,13 +5,14 @@
       <button id="toTomorrowsImage" :disabled="dateIndex === 0" @click="changeIndex(-1)" class="disabled:opacity-75 h-full w-[15%] bg-nasaBlue text-nasaWhite text-center desktop:text-lg desktop:font-bold">&#62</button>
     </div>
   <div id="wrapper" class="desktop:grid desktop:grid-cols-[5%_auto_430px_5%] desktop:gap-[10px]">
-    <div id="media" class="desktop:col-start-2 desktop:self-center desktop:justify-self-center">
-      <mediaComp v-if="imageExists" :isImage="isImage" :podURL="podURL" :podHDURL="podHDURL" class="desktop:max-h-full"/>
+    <div id="mediaWrapper" v-if="imageExists" class="relative desktop:col-start-2 desktop:self-center desktop:justify-self-center">
+      <img id="podImage" v-if="isImage" :src="podHDURL" alt="Picture of the Day" class="w-full h-auto indent-[100%] whitespace-nowrap overflow-hidden desktop:w-auto desktop:max-h-full"/>
+      <p id="copyright" v-if="isImage" class="absolute bottom-0 text-[0.65rem] leading-tight text-nasaWhite bg-darkGrey/[.6] p-[2px]">{{ copyright }}</p>
+      <iframe id="podVideo" v-if="!isImage" :src="podURL" class="w-full aspect-video indent-[100%] whitespace-nowrap overflow-hidden" ></iframe>
       <p id="noImageMessage" v-if="!imageExists" class="h-[200px] bg-darkGrey text-center text-nasaWhite">{{ noImageMessage }}</p>
     </div>
     <div id="descriptionContainer" class="desktop:col-start-3 desktop:justify-self-start">
       <p id="podTitle" class="h-fit text-center font-bold pt-[10px] text-textPrimary tablet:text-lg desktop:row-start-1 desktop:col-start-2">{{ podTitle }}</p>
-
       <div id="hrDescriptionBar" class="flex py-[10px] text-sm">
         <hr class="flex-grow self-center text-primary w-full border-[1px] border-nasaBlue">
         <h4 class="flex-none px-2 font-bold text:sm text-textPrimary desktop:text-lg">Description</h4>
@@ -55,6 +56,7 @@
         podDescription: '',
         podHDURL: '',
         podURL: '',
+        copyright: ''
       }
     },
     computed: {
@@ -79,6 +81,7 @@
           this.podDescription = response.data.explanation;
           this.podDate = response.data.date;
           this.podTitle = response.data.title;
+          this.copyright = response.data.copyright;
         // Display either image or video
           switch (this.mediaType) {
             case 'image':

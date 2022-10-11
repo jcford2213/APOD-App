@@ -15,7 +15,8 @@ export const getTodaysImage = async () => {
         url: res.data.url,
         hdurl: res.data.hdurl,
         explanation: res.data.explanation,
-        title: res.data.title
+        title: res.data.title,
+        copyright: res.data.copyright
       };
     })  //returns hdurl which is the key for the image link
     .catch(error => console.log(`Error: ${error.message}`));
@@ -35,7 +36,8 @@ export const getNewImage = async (date) => {
             url: res.data.url,
             hdurl: res.data.hdurl,
             explanation: res.data.explanation,
-            title: res.data.title
+            title: res.data.title,
+            copyright: res.data.copyright
           };
         });  // hdurl is the key for the image link
         return image;

@@ -67,7 +67,7 @@
       return {
         dates: getAllDates(),   // Returns an array of objects
         mobileView: false,
-        mobileNavVisibility: false
+        mobileNavVisibility: false  // Used by tag i id='fa-bars'
       }
     },
 // COMPUTED
@@ -90,11 +90,8 @@
       handleView() { 
         this.mobileView = window.innerWidth <= 725; 
       },
-      shiftWindow() {
-        this.$el.querySelector('#contentWrapper').style = 'transform: translateX(0px); transition: 1s transform cubic-bezier(0,.12,.14,1)';
-        this.toggleNavVisibility();
-      },
-      // Toggles whether mobile
+      // Toggles whether mobile naviigtion is visible
+      // Is triggered by fabars dropdown button
       toggleNavVisibility() {
         switch(this.mobileNavVisibility) {
           case false: // Nav isn't visible
@@ -106,6 +103,7 @@
         }
         console.log(`mobileNavVisibility = ${this.mobileNavVisibility}`)
       },
+      // Sets the url path for based on the image date
       setUrlPath(index) {
         console.log(this.dates[index].string)
         router.push({ name: 'searchView', params: { urlDate: this.dates[index].string } });
@@ -113,6 +111,8 @@
     },
 // WATCH
     watch: {
+      // Shifts all of the webpage content to the left
+      // Reveals nobile navigation list
       mobileNavVisibility(value) {
         switch(value) {
           case true: 
@@ -129,6 +129,7 @@
 // CREATED
     created() {
       console.log(`Number of images/videos = ${this.dates.length} | from App.vue created()`);
+      // Checks screen width and sets this.mobileView
       this.handleView();
       window.addEventListener('resize', this.handleView);
     },
