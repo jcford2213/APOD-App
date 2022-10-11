@@ -1,6 +1,6 @@
 <template id="app">
   <div id="windowWrapper" class="sticky min-w-[350px] bg-darkGrey">
-
+    <!--Navigation shown on Mobile Devices-->
     <div id="mobileNav" v-if="mobileView" class="flex flex-col items-end pt-3 absolute right-3">
       <button id="mobileNavButton" @click="toggleNavVisibility">
         <i id="fa-x" class="fas fa-sharp fa-solid fa-x text-nasaWhite"></i>
@@ -13,15 +13,16 @@
     </div>
 
     <div id="contentWrapper" class="flex flex-col h-screen w-full overflow-scroll bg-[#6b6b6b]">
+      <!--HEADER-->
       <header id="header" class="flex flex-row justify-between place-items-center px-2 bg-nasaWhite">
         <router-link id="appLogo" :to="{ name: 'homeView' }" class="min-w-[143px] font-bold text:base text-nasaBlue">NASA's Astronomy<br>Picture of the Day</router-link>
         <nav id="nav" class="flex flex-row place-items-center justify-end">
           <searchComp class="mx-[10px] caret-nasaBlue text-nasaBlue" />
-          <!--MOBILE NAVIGATION-->
+          <!--utton. Shown on Mobile Devices-->
           <button id="mobileNavButton" v-if="mobileView" @click="toggleNavVisibility">
             <i id="fa-bars" v-if="!mobileNavVisibility" class="fas fa-bars text-nasaBlue"></i>
           </button>
-          <!----DESKTOP NAVIGATION-->
+          <!--DESKTOP NAVIGATION-->
           <ul v-if="!mobileView" class="flex flex-row gap-5 w-full justify-end items-center">
             <router-link :to="{ name: 'galleryView' }" class="font-bold text:base text-nasaBlue">Gallery</router-link>
             <router-link :to="{ name: 'aboutView' }" class="font-bold text:base text-nasaBlue">About</router-link>
@@ -40,102 +41,102 @@
 
 </template>
 
-<script>  // <script setup> is recommended syntax for SFC's. Provides several advantages over <script>
+<script> // 'script setup' is recommended syntax for SFC's. Provides several advantages over 'script'
 // COMPONENTS
-import podView from './views/podView.vue';
-import aboutView from './views/aboutView.vue';
-import galleryView from './views/galleryView.vue';
-import searchComp from './components/searchComp.vue';
+  import podView from './views/podView.vue';
+  import aboutView from './views/aboutView.vue';
+  import galleryView from './views/galleryView.vue';
+  import searchComp from './components/searchComp.vue';
 
 // IMPORTS & DEPENDENCIES
-import getAllDates from './controllers/getAllDates';
-import router from './router';
+  import getAllDates from './controllers/getAllDates';
+  import router from './router';
 
 
-export default {
-  el: "#app",
-  name: 'App',
-  components: {
-    podView,
-    galleryView,
-    aboutView,
-    searchComp
-},
+  export default {
+    el: "#app",
+    name: 'App',
+    components: {
+      podView,
+      galleryView,
+      aboutView,
+      searchComp
+  },
 // DATA
-  data() {
-    return {
-      dates: getAllDates(),   // Returns an array of objects
-      mobileView: false,
-      mobileNavVisibility: false
-    }
-  },
+    data() {
+      return {
+        dates: getAllDates(),   // Returns an array of objects
+        mobileView: false,
+        mobileNavVisibility: false
+      }
+    },
 // COMPUTED
-  computed: {
-    dateIndex () {
-      let path = decodeURIComponent(this.$route.fullPath);
-      path = path.replace('/', '');
-      if(path !== '') {
-        console.log(`Path is ${path} | from App.vue dateIndex() computed:`);
-        console.log(`Index is ${this.dates.findIndex((date) => date.string == path)} | from App.vue dateIndex() computed:`)
-        return this.dates.findIndex((date) => date.string === path);
-      } else {
-        return 0;
+    computed: {
+      dateIndex () {
+        let path = decodeURIComponent(this.$route.fullPath);
+        path = path.replace('/', '');
+        if(path !== '') {
+          console.log(`Path is ${path} | from App.vue dateIndex() computed:`);
+          console.log(`Index is ${this.dates.findIndex((date) => date.string == path)} | from App.vue dateIndex() computed:`)
+          return this.dates.findIndex((date) => date.string === path);
+        } else {
+          return 0;
+        }
       }
-    }
-  },
+    },
 // METHODS
-  methods: {
-    // Sets display to Mobile if inner width is less than/equal to X pixles
-    handleView() { 
-      this.mobileView = window.innerWidth <= 725; 
-    },
-    shiftWindow() {
-      this.$el.querySelector('#contentWrapper').style = 'transform: translateX(0px); transition: 1s transform cubic-bezier(0,.12,.14,1)';
-      this.toggleNavVisibility();
-    },
-    // Toggles whether mobile
-    toggleNavVisibility() {
-      switch(this.mobileNavVisibility) {
-        case false: // Nav isn't visible
-          this.mobileNavVisibility = true;  // Shows nav on click
-        break;
-        case true:  // Nav is visible
-          this.mobileNavVisibility = false; // Hides nav on click
-        break;
+    methods: {
+      // Sets display to Mobile if inner width is less than/equal to X pixles
+      handleView() { 
+        this.mobileView = window.innerWidth <= 725; 
+      },
+      shiftWindow() {
+        this.$el.querySelector('#contentWrapper').style = 'transform: translateX(0px); transition: 1s transform cubic-bezier(0,.12,.14,1)';
+        this.toggleNavVisibility();
+      },
+      // Toggles whether mobile
+      toggleNavVisibility() {
+        switch(this.mobileNavVisibility) {
+          case false: // Nav isn't visible
+            this.mobileNavVisibility = true;  // Shows nav on click
+          break;
+          case true:  // Nav is visible
+            this.mobileNavVisibility = false; // Hides nav on click
+          break;
+        }
+        console.log(`mobileNavVisibility = ${this.mobileNavVisibility}`)
+      },
+      setUrlPath(index) {
+        console.log(this.dates[index].string)
+        router.push({ name: 'searchView', params: { urlDate: this.dates[index].string } });
       }
-      console.log(`mobileNavVisibility = ${this.mobileNavVisibility}`)
     },
-    setUrlPath(index) {
-      console.log(this.dates[index].string)
-      router.push({ name: 'searchView', params: { urlDate: this.dates[index].string } });
-    }
-  },
 // WATCH
-  watch: {
-    mobileNavVisibility(value) {
-      switch(value) {
-        case true: 
-          this.$el.querySelector('#contentWrapper').style = 'transform: translateX(-150px); transition: 1s transform cubic-bezier(0,.12,.14,1)';
-          //this.$el.querySelector('#navSearchComp').style = 'transform: translateX(-150px); transition: 1s transform cubic-bezier(0,.12,.14,1)';
-          break;
-        case false: 
-          this.$el.querySelector('#contentWrapper').style = 'transform: translateX(0px); transition: 1s transform cubic-bezier(0,.12,.14,1)';
-          //this.$el.querySelector('#navSearchComp').style = 'transform: translateX(0px); transition: 1s transform cubic-bezier(0,.12,.14,1)';
-          break;
+    watch: {
+      mobileNavVisibility(value) {
+        switch(value) {
+          case true: 
+            this.$el.querySelector('#contentWrapper').style = 'transform: translateX(-150px); transition: 1s transform cubic-bezier(0,.12,.14,1)';
+            //this.$el.querySelector('#navSearchComp').style = 'transform: translateX(-150px); transition: 1s transform cubic-bezier(0,.12,.14,1)';
+            break;
+          case false: 
+            this.$el.querySelector('#contentWrapper').style = 'transform: translateX(0px); transition: 1s transform cubic-bezier(0,.12,.14,1)';
+            //this.$el.querySelector('#navSearchComp').style = 'transform: translateX(0px); transition: 1s transform cubic-bezier(0,.12,.14,1)';
+            break;
+        }
       }
-    }
-  },
+    },
 // CREATED
-  created() {
-    console.log(`Number of images/videos = ${this.dates.length} | from App.vue created()`);
-    this.handleView();
-    window.addEventListener('resize', this.handleView);
-  },
+    created() {
+      console.log(`Number of images/videos = ${this.dates.length} | from App.vue created()`);
+      this.handleView();
+      window.addEventListener('resize', this.handleView);
+    },
 // MOUNTED
-  mounted() {
-    console.log(`$route == ${decodeURIComponent(this.$route.fullPath)} | from App.vue mounted()`);
-    console.log(`DateIndex == ${this.dateIndex} | from App.vue mounted()`);
-    this.$el.querySelector('#contentWrapper').style = 'transform: translateX(0px)';
+    mounted() {
+      console.log(`$route == ${decodeURIComponent(this.$route.fullPath)} | from App.vue mounted()`);
+      console.log(`DateIndex == ${this.dateIndex} | from App.vue mounted()`);
+      this.$el.querySelector('#contentWrapper').style = 'transform: translateX(0px)';
+    }
   }
-}
 </script>

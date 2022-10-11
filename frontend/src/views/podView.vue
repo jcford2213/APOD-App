@@ -1,15 +1,15 @@
 <template>
-  <div id="dateArrowsBar" class="flex flex-row items-center h-[30px] border-t-[2px] border-nasaBlue">
-      <button id="toYesterdaysImage" :disabled="dateIndex === (dates.length - 1)" @click="changeIndex(1)" class="disabled:opacity-75 h-full w-[15%] bg-nasaBlue text-[white] text-center">&#60</button>
-      <p id="podDate" class="flex-grow text-center font-bold text-sm text-textPrimary tablet:text-base">{{ podDate }}</p>
-      <button id="toTomorrowsImage" :disabled="dateIndex === 0" @click="changeIndex(-1)" class="disabled:opacity-75 h-full w-[15%] bg-nasaBlue text-[white] text-center">&#62</button>
+  <div id="dateArrowsBar" class="flex flex-row items-center h-fit border-t-[2px] border-nasaBlue">
+      <button id="toYesterdaysImage" :disabled="dateIndex === (dates.length - 1)" @click="changeIndex(1)" class="disabled:opacity-75 h-full w-[15%] bg-nasaBlue text-nasaWhite text-center desktop:text-lg desktop:font-bold">&#60</button>
+      <p id="podDate" class="flex-grow text-center font-bold text-sm text-textPrimary tablet:text-base desktop:text-lg">{{ podDate }}</p>
+      <button id="toTomorrowsImage" :disabled="dateIndex === 0" @click="changeIndex(-1)" class="disabled:opacity-75 h-full w-[15%] bg-nasaBlue text-nasaWhite text-center desktop:text-lg desktop:font-bold">&#62</button>
     </div>
-  <div id="wrapper" class="desktop:grid desktop:grid-cols-[auto_430px]">
-    <div id="media" class="desktop:row-span-2 desktop:self-center">
-      <mediaComp v-if="imageExists" :isImage="isImage" :podURL="podURL" :podHDURL="podHDURL" class="desktop:max-h-[816px]"/>
+  <div id="wrapper" class="desktop:grid desktop:grid-cols-[5%_auto_430px_5%] desktop:gap-[10px]">
+    <div id="media" class="desktop:col-start-2 desktop:self-center desktop:justify-self-center">
+      <mediaComp v-if="imageExists" :isImage="isImage" :podURL="podURL" :podHDURL="podHDURL" class="desktop:max-h-full"/>
       <p id="noImageMessage" v-if="!imageExists" class="h-[200px] bg-darkGrey text-center text-nasaWhite">{{ noImageMessage }}</p>
     </div>
-    <div id="descriptionContainer" class="desktop:col-start-2 desktop:justify-self-end">
+    <div id="descriptionContainer" class="desktop:col-start-3 desktop:justify-self-start">
       <p id="podTitle" class="h-fit text-center font-bold pt-[10px] text-textPrimary tablet:text-lg desktop:row-start-1 desktop:col-start-2">{{ podTitle }}</p>
 
       <div id="hrDescriptionBar" class="flex py-[10px] text-sm">
@@ -72,7 +72,7 @@
       // Gets search picture
         else {
           console.log(`Calling server for image from ${this.urlDate} | from podView getImage()`)
-          response = await axios.post(`htt[://localhtso:${import.meta.env.VITE_SERVER_PORT}`, {date: this.urlDate});
+          response = await axios.post(`http://localhost:${import.meta.env.VITE_SERVER_PORT}`, {date: this.urlDate});
         }
         if (typeof response.data.mediaType !== 'undefined') {
           this.mediaType = response.data.mediaType;
