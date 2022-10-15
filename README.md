@@ -19,51 +19,30 @@ Descirption:
   The NASA official website link is: https://apod.nasa.gov/apod/astropix.html
   NASA offers a free API to access their APOD data.
 ```
-  // App Setup
-      - Generate A Free NASA API Key at https://api.nasa.gov
-    
-    // Frontend Code
-      cd frontend
-      npm install
-      npm run dev
+// App Setup
+    - Generate A Free NASA API Key at https://api.nasa.gov
+  
+  // Frontend Code
+    cd frontend
+    npm install
+    npm run dev
 
-    // Frontend .env
-        ```env
-          VITE_SERVER_PORT={the server's port}
-        ```
-
-    // Backend Code
-      cd backend
-      npm install
-      npx nodemon
-
-    // Backend .env
+  // Frontend .env
       ```env
-        API_KEY={your nasa api key}
-        SERVER_PORT={the server's port}
+      VITE_SERVER_PORT={the server's port}
       ```
 
-    Run App
-      - Open terminal and make sure the working directory is \APOD-APP
-      - Start the Node.js server
-        - In \backend run 
-          ```
-            cd backend
-          ```
-        - Start the server
-          ```
-            npx nodemon
-          ```
-      - Start the Vue.js server
-        - From /APOD-APP change directory to /frontend
-          ```
-            cd frontend
-          ```
-        - Start the server
-          ```
-            npm run dev
-          ```
-    // Run APP
-      - Open web browser to http://localhost:3000
-  ```
+  // Backend Code
+    cd backend
+    npm install
+    npx nodemon
+
+  // Backend .env
+    ```env
+    API_KEY={your nasa api key}
+    SERVER_PORT={the server's port}
+    ```
+
+// Run APP - Open web browser to http://localhost:3000
+```
     
