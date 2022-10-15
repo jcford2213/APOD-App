@@ -1,22 +1,17 @@
-Title:
-  A NASA's Astronomy Picture of the Day (APOD) Website
+//**Title**
+//  NASA's Astronomy Picture of the Day (APOD) Website Recreation
 
-Version:
-  1.0.2 - Mobile friendly only prototype
+//**version**
+//  1.0.2 - Mobile friendly only prototype
 
-Descirption:
-  The goal of this project is to build a modern looking NASA APOD website using NASA's APOD API 
+//**Descirption**
+//  **Frontend**: Vue.js, Tailwind CSS
 
-  This project is intended to be an exercise in building a website using data from an API.
-  This project is built using: 
-  - Node.js as the server 
-    - Nodemon to automatically restart the server when a file save is detected
-  - Vue.js as the frontend
-    - Tailwindcss CSS Framework
-      
-  NASA features an astronomical photo or video daily online. 
-  The first image was featured on June 16 1995
-  The NASA official website link is: https://apod.nasa.gov/apod/astropix.html
+//  **Backend**:  Express.js, Node.js
+
+//  **First Image**: 1995/06/16 (June 16, 1995)
+
+//  **NASA's APOD website**: [https://apod.nasa.gov/apod/astropix.html]
   NASA offers a free API to access their APOD data.
 ```
 // App Setup
