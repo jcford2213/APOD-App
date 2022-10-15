@@ -1,8 +1,10 @@
 # **NASA's Astronomy Picture of the Day (APOD) Website Recreation**
 
 ## **Version**
-  *1.0.2*
+  *1.0.2*\n
+
   Mobile Friendly 
+
   Tablet and Desktop under construction
 
 ## **Descirption**
@@ -23,16 +25,16 @@
   ```
 
   **Frontend Code**
-    ```
-      cd frontend
-      npm install
-      npm run dev
-    ```
+  ```
+    cd frontend
+    npm install
+    npm run dev
+  ```
 
-   **Frontend .env**
-    ``` env
-      VITE_SERVER_PORT={the server's port}
-    ```
+  **Frontend .env**
+  ``` env
+    VITE_SERVER_PORT={the server's port}
+  ```
 
   **Backend Code**
   ```
