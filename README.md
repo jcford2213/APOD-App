@@ -1,7 +1,9 @@
-### **NASA's Astronomy Picture of the Day (APOD) Website Recreation**
+##### **NASA's Astronomy Picture of the Day (APOD) Website Recreation**
 
-## **version**
-  1.0.2 - Mobile friendly only prototype
+## **Version**
+  *1.0.2*
+  Mobile Friendly 
+  Tablet and Desktop under construction
 
 ## **Descirption**
   **Frontend**: Vue.js, Tailwind CSS
@@ -22,14 +24,14 @@
 
   **Frontend Code**
     ```
-    cd frontend
-    npm install
-    npm run dev
+      cd frontend
+      npm install
+      npm run dev
     ```
 
    **Frontend .env**
-    ```env
-    VITE_SERVER_PORT={the server's port}
+    ``` env
+      VITE_SERVER_PORT={the server's port}
     ```
 
   **Backend Code**
@@ -40,9 +42,9 @@
   ```
 
   **Backend .env**
-  ```env
-  API_KEY={your nasa api key}
-  SERVER_PORT={the server's port}
+  ``` env
+    API_KEY={your nasa api key}
+    SERVER_PORT={the server's port}
   ```
 
  ## **Run APP**
