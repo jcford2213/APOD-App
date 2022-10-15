@@ -1,7 +1,8 @@
-# **NASA's Astronomy Picture of the Day (APOD) Website Recreation**
+# **NASA's APOD Website Recreation**
+
 
 ## **Version**
-  *1.0.2*\n
+  *1.0.2*
 
   Mobile Friendly 
 
@@ -14,10 +15,10 @@
 
   **First Image**: 1995/06/16 (June 16, 1995)
 
-  **Official NASA APOD [website](https://apod.nasa.gov/apod/astropix.html)**
+  **[Official NASA APOD website](https://apod.nasa.gov/apod/astropix.html)**
   
 ## **App Setup**
-  **Generate A Free NASA API Key: https://api.nasa.gov**
+  **[Generate A Free NASA API Key](https://api.nasa.gov)**
 
   **Clone APOD-APP**
   ```
@@ -31,7 +32,7 @@
     npm run dev
   ```
 
-  **Frontend .env**
+  **Frontend .env File**
   ``` env
     VITE_SERVER_PORT={port number}
   ```
@@ -43,13 +44,13 @@
     npx nodemon
   ```
 
-  **Backend .env**
+  **Backend .env File**
   ``` env
     API_KEY={your nasa api key}
-    SERVER_PORT={the server's port}
+    SERVER_PORT={port number}
   ```
 
  ## **Run APP**
-  Go to http://localhost:3000 in browser
+  Go to http://localhost:3000 in a browser
 
     
