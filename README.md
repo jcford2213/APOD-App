@@ -33,7 +33,7 @@
 
   **Frontend .env**
   ``` env
-    VITE_SERVER_PORT={the server's port}
+    VITE_SERVER_PORT={port number}
   ```
 
   **Backend Code**
