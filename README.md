@@ -1,4 +1,4 @@
-##### **NASA's Astronomy Picture of the Day (APOD) Website Recreation**
+# **NASA's Astronomy Picture of the Day (APOD) Website Recreation**
 
 ## **Version**
   *1.0.2*
@@ -12,10 +12,10 @@
 
   **First Image**: 1995/06/16 (June 16, 1995)
 
-  **Official NASA APOD website**: [https://apod.nasa.gov/apod/astropix.html]
+  **Official NASA APOD [website](https://apod.nasa.gov/apod/astropix.html)**
   
 ## **App Setup**
-  **Generate A Free NASA API Key**: [https://api.nasa.gov]
+  **Generate A Free NASA API Key: https://api.nasa.gov**
 
   **Clone APOD-APP**
   ```
