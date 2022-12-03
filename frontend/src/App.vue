@@ -7,24 +7,22 @@
       </button>
       <ul id="nav" class="h-fit w-fit text-end space-y-[10px]">
         <li><router-link :to="{ name: 'homeView' }" @click="this.$emit('newPageLoading')" class="font-bold text:base text-nasaWhite">Home</router-link></li>
-        <li><router-link :to="{ name: 'galleryView' }" @click="this.$emit('newPageLoading')" class="font-bold text:base text-nasaWhite">Gallery</router-link></li>
         <li><router-link :to="{ name: 'aboutView' }" @click="this.$emit('newPageLoading')" class="font-bold text:base text-nasaWhite">About</router-link></li>
       </ul>
     </div>
 
     <div id="contentWrapper" class="flex flex-col h-screen w-full overflow-scroll bg-[#6b6b6b]">
       <!--HEADER-->
-      <header id="header" class="flex flex-row justify-between place-items-center px-2 bg-nasaWhite">
+      <header id="header" class="flex flex-row px-2 bg-nasaWhite">
         <router-link id="appLogo" :to="{ name: 'homeView' }" class="min-w-[143px] font-bold text:base text-nasaBlue">NASA's Astronomy<br>Picture of the Day</router-link>
-        <nav id="nav" class="flex flex-row place-items-center justify-end">
+        <nav id="nav" class="flex-grow flex flex-row place-items-center justify-end">
           <searchComp class="mx-[10px] caret-nasaBlue text-nasaBlue" />
-          <!--utton. Shown on Mobile Devices-->
+          <!--Button. Shown on Mobile Devices-->
           <button id="mobileNavButton" v-if="mobileView" @click="toggleNavVisibility">
             <i id="fa-bars" v-if="!mobileNavVisibility" class="fas fa-bars text-nasaBlue"></i>
           </button>
           <!--DESKTOP NAVIGATION-->
-          <ul v-if="!mobileView" class="flex flex-row gap-5 w-full justify-end items-center">
-            <router-link :to="{ name: 'galleryView' }" class="font-bold text:base text-nasaBlue">Gallery</router-link>
+          <ul v-if="!mobileView" class="flex flex-row gap-5 justify-end items-center">
             <router-link :to="{ name: 'aboutView' }" class="font-bold text:base text-nasaBlue">About</router-link>
           </ul>
         </nav>
@@ -45,7 +43,6 @@
 // COMPONENTS
   import podView from './views/podView.vue';
   import aboutView from './views/aboutView.vue';
-  import galleryView from './views/galleryView.vue';
   import searchComp from './components/searchComp.vue';
 
 // IMPORTS & DEPENDENCIES
@@ -58,7 +55,6 @@
     name: 'App',
     components: {
       podView,
-      galleryView,
       aboutView,
       searchComp
   },
@@ -88,7 +84,7 @@
     methods: {
       // Sets display to Mobile if inner width is less than/equal to X pixles
       handleView() { 
-        this.mobileView = window.innerWidth <= 725; 
+        this.mobileView = window.innerWidth <= 750; 
       },
       // Toggles whether mobile naviigtion is visible
       // Is triggered by fabars dropdown button

@@ -15,6 +15,7 @@ app.post('/', indexRouter);
 
 // Set App to listen on port 5000
 const port = process.env.SERVER_PORT;
-app.listen(port, () => {
+const hostname = '0.0.0.0'
+app.listen(port, hostname, () => {
   console.log(`Server listneing on port ${port}`);
 }) 

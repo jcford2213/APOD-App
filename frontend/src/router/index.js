@@ -17,11 +17,6 @@ const routes = [
     component: podView
   },
   {
-    path: '/gallery',
-    name: 'galleryView',
-    component: galleryView
-  },
-  {
     path: '/about',
     name: 'aboutView',
     props: true,  // Accept any route pararmeters as props
