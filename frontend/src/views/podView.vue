@@ -68,7 +68,7 @@
         let response;
         // Gets todays picture
         if (typeof this.urlDate === 'undefined') {
-          console.log(`Calling server for today's image | from podView getImage()`);
+          console.log(`Calling server for today's image at ${import.meta.env.VITE_SERVER_URL}| from podView getImage()`);
           response = await axios(`${import.meta.env.VITE_SERVER_URL}`);
         }
       // Gets search picture
