@@ -69,12 +69,12 @@
         // Gets todays picture
         if (typeof this.urlDate === 'undefined') {
           console.log(`Calling server for today's image | from podView getImage()`);
-          response = await axios(`http://${import.meta.env.VITE_SERVER_URL}`);
+          response = await axios(`${import.meta.env.VITE_SERVER_URL}`);
         }
       // Gets search picture
         else {
           console.log(`Calling server for image from ${this.urlDate} | from podView getImage()`)
-          response = await axios.post(`http://${import.meta.env.VITE_SERVER_URL}`, {date: this.urlDate});
+          response = await axios.post(`${import.meta.env.VITE_SERVER_URL}`, {date: this.urlDate});
         }
         if (typeof response.data.mediaType !== 'undefined') {
           this.mediaType = response.data.mediaType;
