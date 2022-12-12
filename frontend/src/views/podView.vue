@@ -68,6 +68,7 @@
         let response;
         // Gets todays picture
         if (typeof this.urlDate === 'undefined') {
+          response = await axios.get(`${import.meta.env.VITE_SERVER_URL}`)
         }
       // Gets search picture
         else {

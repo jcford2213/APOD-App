@@ -6,6 +6,7 @@ import { getTodaysImage, getNewImage } from '../controllers/getImages.js';
 const router = express.Router();
 
 router.get('/', async (req, res) => {
+  console.log('called')
   const image = await getTodaysImage(); // Returns an object. Gets todays APOD data 
   console.log(`Sending today's image`);
   res.send(image); // Sends an object
