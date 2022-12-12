@@ -68,6 +68,7 @@
     },
 // COMPUTED
     computed: {
+      // Tracks the 
       dateIndex () {
         let path = decodeURIComponent(this.$route.fullPath);
         path = path.replace('/', '');

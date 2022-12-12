@@ -6,7 +6,7 @@
     </div>
   <div id="wrapper" class="desktop:grid desktop:grid-cols-[5%_auto_430px_5%] desktop:gap-[10px]">
     <div id="mediaWrapper" v-if="imageExists" class="relative desktop:col-start-2 desktop:self-center desktop:justify-self-center">
-      <img id="podImage" v-if="isImage" :src="podHDURL" alt="Picture of the Day" class="w-full h-auto indent-[100%] whitespace-nowrap overflow-hidden desktop:w-auto desktop:max-h-full"/>
+      <img id="podImage" v-if="isImage" :src="podURL" alt="Picture of the Day" class="w-full h-auto max-h-full indent-[100%] whitespace-nowrap overflow-hidden desktop:w-auto desktop:max-h-full"/>
       <p id="copyright" v-if="isImage" class="absolute bottom-0 text-[0.65rem] leading-tight text-nasaWhite bg-darkGrey/[.6] p-[2px]">{{ copyright }}</p>
       <iframe id="podVideo" v-if="!isImage" :src="podURL" class="w-full aspect-video indent-[100%] whitespace-nowrap overflow-hidden" ></iframe>
       <p id="noImageMessage" v-if="!imageExists" class="h-[200px] bg-darkGrey text-center text-nasaWhite">{{ noImageMessage }}</p>
@@ -68,8 +68,6 @@
         let response;
         // Gets todays picture
         if (typeof this.urlDate === 'undefined') {
-          console.log(`Calling server for today's image at ${import.meta.env.VITE_SERVER_URL}| from podView getImage()`);
-          response = await axios(`${import.meta.env.VITE_SERVER_URL}`);
         }
       // Gets search picture
         else {
