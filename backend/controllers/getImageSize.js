@@ -1,4 +1,5 @@
 // This function uses the Url-File_Size package to return the size of an image file in kilobytes
+// As of now this file is for dev purposes only
 
 import ufs from 'url-file-size'
 

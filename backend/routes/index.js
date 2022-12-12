@@ -1,15 +1,12 @@
 // DEPENDENCIES & IMPORTS
 import express from 'express';
 import { getTodaysImage, getNewImage } from '../controllers/getImages.js';
-import getImageSize from '../controllers/getImageSize.js';
 
 // Set up router
 const router = express.Router();
 
 router.get('/', async (req, res) => {
   const image = await getTodaysImage(); // Returns an object. Gets todays APOD data 
-  getImageSize(image.hdurl)
-  getImageSize(image.url)
   console.log(`Sending today's image`);
   res.send(image); // Sends an object
 });

@@ -1,6 +1,8 @@
 .env
 node_modules
 
+./backend/controllers/getImageSizes.js
+
 # Logs
 logs
 *.log
