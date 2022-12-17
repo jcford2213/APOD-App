@@ -6,10 +6,14 @@ import { getTodaysImage, getNewImage } from '../controllers/getImages.js';
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-  console.log('called')
-  const image = await getTodaysImage(); // Returns an object. Gets todays APOD data 
-  console.log(`Sending today's image`);
-  res.send(image); // Sends an object
+  console.log('Router received get request')
+  const image = await getTodaysImage()  // Returns an object. Gets todays APOD data 
+    .catch(error => {
+      console.log(`Error in router.get\n   Error message: ${error.message}`)
+      res.send(`ERROR\nMessage: ${error.message}`)
+    })
+  res.send(image)
+  console.log('Sent image to client')
 });
 
 router.post('/', async (req, res) => {
