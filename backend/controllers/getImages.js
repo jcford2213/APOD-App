@@ -24,9 +24,9 @@ export const getNewImage = async (date) => {
   if (date != undefined) {
     try {
       const url = `https://api.nasa.gov/planetary/apod?api_key=${process.env.API_KEY}&date=${date}` // plus date inputs
-      const image = await axios(url)
-        .then(res => { return res.data });  // hdurl is the key for the image link
-        return image;
+      const apiResult = await axios(url)
+        .then(res => { return res.data });  // hdurl is the key for the apiResult link
+        return apiResult;
       } catch (error) {
         throw new Error('Error failed to connect to NASA API :: backend/controllers/index.js :: ');
       };

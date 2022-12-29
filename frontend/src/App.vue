@@ -30,7 +30,6 @@
       <div id="routerWrapper" class="flex-grow w-full">
       <Suspense>
         <router-view #default :key="$route.fullPath" :dates="dates" :dateIndex="dateIndex" @indexChanged="setUrlPath"/>
-        <template #fallback>Loading...</template> 
       </Suspense>
       </div>
       <footer id="footer" class="flex-none w-full mt-[10px] px-[1px] border-t-[2px] border-nasaBlue bg-nasaWhite">

@@ -25,7 +25,7 @@
 
 <script setup>
 // IMPORTS & DEPENDENCIES
-  import { ref, computed } from 'vue';
+  import { computed } from 'vue';
   import axios from 'axios';
  
   const props = defineProps({
@@ -50,7 +50,7 @@
 
   const getImage = async () => {
     let serverRes;
-    serverRes = await axios.get(`${import.meta.env.VITE_SERVER_URL}`)  // Get today's image
+   // serverRes = await axios.get(`${import.meta.env.VITE_SERVER_URL}`)  // Get today's image
     if (typeof props.urlDate === 'undefined') {  // Checks if there is a date in the URL indicating a search for a past image
       serverRes = await axios.get(`${import.meta.env.VITE_SERVER_URL}`)  // Get today's image
     }
