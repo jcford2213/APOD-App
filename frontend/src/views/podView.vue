@@ -1,6 +1,6 @@
 <template>
-  <div id="dateArrowsBar" class="flex flex-row items-center h-fit border-t-[2px] border-nasaBlue">
-      <button id="toYesterdaysImage" :disabled="dateIndex === (dates.length - 1)" @click="changeIndex(1)" class="disabled:opacity-75 h-full w-[15%] bg-nasaBlue text-nasaWhite text-center desktop:text-lg desktop:font-bold">&#60</button>
+   <div id="dateArrowsBar" class="flex flex-row items-center h-fit border-t-[2px] border-nasaBlue">
+      <button id="toYesterdaysImage" :disabled="dateIndex === (props.dates.length - 1)" @click="changeIndex(1)" class="disabled:opacity-75 h-full w-[15%] bg-nasaBlue text-nasaWhite text-center desktop:text-lg desktop:font-bold">&#60</button>
       <p id="podDate" class="flex-grow text-center font-bold text-sm text-textPrimary tablet:text-base desktop:text-lg">{{ apiImage.date }}</p>
       <button id="toTomorrowsImage" :disabled="dateIndex === 0" @click="changeIndex(-1)" class="disabled:opacity-75 h-full w-[15%] bg-nasaBlue text-nasaWhite text-center desktop:text-lg desktop:font-bold">&#62</button>
     </div>
@@ -23,76 +23,59 @@
   </div>
 </template>
 
-<script>
+<script setup>
 // IMPORTS & DEPENDENCIES
+  import { ref, computed } from 'vue';
   import axios from 'axios';
-  
-// COMPONENTS
-  import mediaComp from '../components/mediaComp.vue';
+ 
+  const props = defineProps({
+    dates: Array, // Contains all dates from 1995-06-16 to present. Each array element is an object | sent from App.vue
+    urlDate: String,  // defined by the route path ( /:urlDate ) | from routes/index.js
+    dateIndex: String // is the index of the current date from dates array | sent from App.vue
+  })
 
-// let descriptionVisibility = false;  // If false, indicates the podDescription is not visible
-  export default {
-    el: '#wrapper', // Used for $el selector to select elements from the local template html.
-    name: 'podView',
-    components: {
-      mediaComp,
-// PROPS
-    },
-    props: {
-      dates: Array, // Contains all dates from 1995-06-16 to present. Each array element is an object | sent from App.vue
-      urlDate: String,  // defined by the route path ( /:urlDate ) | from routes/index.js
-      dateIndex: Number // is the index of the current date from dates array | sent from App.vue
-    },
-// DATA
-    data() {
-      return {
-        noImageMessage: 'No image exists on this day',
-        imageExists: true,
-        isImage: true,
-        response: Object,
-        apiImage: Object
-      }
-    },
-    computed: {
-      currentIndex() { return this.dateIndex; } // Index of the current date in the dates array
-    },
-// METHODS
-    methods: {
-      async getImage() {
-        let response;
-        if (typeof this.urlDate === 'undefined') {  // Checks if there is a date in the URL indicating a search for a past image
-          response = await axios.get(`${import.meta.env.VITE_SERVER_URL}`)  // Get today's image
-        }
-        else {  // Get past image
-          response = await axios.post(`${import.meta.env.VITE_SERVER_URL}`, {date: this.urlDate});
-        }
-        if (typeof response.data.media_type !== 'undefined') {
-          this.apiImage = response.data
-        // Display either image or video
-          switch (this.mediaype) {
-            case 'image':
-              this.isImage = true;
-              break;
-            case 'video':
-              this.podURL = response.data.url;
-              this.isImage = false
-              break;
-          }
-        } else {
-          this.apiImage.date = this.dates[this.dateIndex].string;
-          this.imageExists = false;
-        }
-      },
-      // Sends to parent component the image's currentIndex +/- 1
-      // Called by the buttons #toYesterday'sImage and #toTomorrow'sImage
-      changeIndex(increment) {
-        this.$emit ('indexChanged', (this.currentIndex + increment));
-      }
-    },
-// CREATED
-    created() {
-      this.getImage();
-      console.log(`DateIndex == ${this.currentIndex} | from podView created()`);
-    }
+  const emit = defineEmits(['indexChanged'])
+  const noImageMessage ='No image exists on this day'
+  let imageExists = true
+  let isImage = true
+  let response = Object
+  let apiImage = Object
+  const currentIndex = computed( () => { return props.dateIndex; } ) // Index of the current date in the dates array
+  
+  // Sends to parent component the image's currentIndex +/- 1
+  // Called by the buttons #toYesterday'sImage and #toTomorrow'sImage
+  const changeIndex = increment => {
+    emit ('indexChanged', (currentIndex.value + increment));
   }
+
+  const getImage = async () => {
+    let serverRes;
+    serverRes = await axios.get(`${import.meta.env.VITE_SERVER_URL}`)  // Get today's image
+    if (typeof props.urlDate === 'undefined') {  // Checks if there is a date in the URL indicating a search for a past image
+      serverRes = await axios.get(`${import.meta.env.VITE_SERVER_URL}`)  // Get today's image
+    }
+    else {  // Get past image
+      serverRes = await axios.post(`${import.meta.env.VITE_SERVER_URL}`, {date: props.urlDate});
+    }
+    if (typeof serverRes.data.media_type !== 'undefined') {
+      apiImage = serverRes.data
+    // Display either image or video
+      switch (serverRes.data.media_type) {
+        case 'image':
+          isImage = true;
+          break;
+        case 'video':
+          isImage = false
+          break;
+      }
+    } else {
+      apiImage.date = props.dates[props.dateIndex].string;
+      imageExists = false;
+    }
+    console.log(apiImage)
+  }
+
+  await getImage();
+  console.log(`DateIndex == ${currentIndex.value} | from podView created()\n IsImage: ${isImage}`);
+  
 </script>

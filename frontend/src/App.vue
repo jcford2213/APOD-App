@@ -28,7 +28,10 @@
         </nav>
       </header>
       <div id="routerWrapper" class="flex-grow w-full">
-        <router-view :key="$route.fullPath" :dates="dates" :dateIndex="dateIndex" @indexChanged="setUrlPath"/>
+      <Suspense>
+        <router-view #default :key="$route.fullPath" :dates="dates" :dateIndex="dateIndex" @indexChanged="setUrlPath"/>
+        <template #fallback>Loading...</template> 
+      </Suspense>
       </div>
       <footer id="footer" class="flex-none w-full mt-[10px] px-[1px] border-t-[2px] border-nasaBlue bg-nasaWhite">
         <p class="text-center text-xs px-2 py-[1px] md:text-base text-nasaBlue">All images and information provided by NASA's Astonomy Picture of the Day API</p>
