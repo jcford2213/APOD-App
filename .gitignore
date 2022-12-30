@@ -1,8 +1,4 @@
 .env
-./frontend/node_modules
-./backend/node_modules
-
-./backend/controllers/getImageSizes.js
 
 # Logs
 logs
@@ -21,6 +17,7 @@ coverage
 
 /cypress/videos/
 /cypress/screenshots/
+node_modules
 
 # Editor directories and files
 .vscode/*
