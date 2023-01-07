@@ -1,41 +1,34 @@
+// Formats a date string
+// from yyyy-mm-dd to mm-dd-yyyy
+// and from mm-dd-yyyy to yyyy-mm-dd
 
-// Takes date object argument and returns a String format 'YYYY-MM-DD'
-export const dateStringFromObject = object => {
-  if (object === undefined) {
-    console.log('undefined date sent');
-    return undefined;
-  }
+const months = [
+  "January",
+  "Februrary",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December"
+]
 
-  // Appends a 0 to single digitmonth and day values 
-    // 2022/5/4 => 2022/05/04
-  const saltedValues = datePrefixZero({ month: String(object.month), day: String(object.day) });
-  return`${String(object.year)}-${saltedValues.month}-${saltedValues.day}`;
-};
+// Convert mmm-dd-yyyy to yyyy-mm-dd
+export const toApiFormat = date => {
+  let yearString = date.split('-')[2]
+  let remainderString = `${date.split('-')[0]}-${date.split('-')[1]}`
+  return `${yearString}-${remainderString}`
+}
 
-// Returns an object
-// Prefixes a 0 onto a month value or day value that is a single digit.
-// {year: 2022, month: 8, day: 9} is converted to {year: 2022, month: 08, day: 09}
-const datePrefixZero = (object) => {
-  if (object.month != null && object.day != null) {
-    // Adds a '0' to the begining of a month or day that is only one digit
-    // Changes 6 to 06. Leaves 10 as 10
-    switch (object.month.length) {
-      case 1: 
-        object.month = `0${object.month}`;
-        break;
-      case 2:
-        break;
-    };
-    switch (object.day.length) {
-      case 1: 
-        object.day = `0${object.day}`;
-        break;
-      case 2:
-        break;
-    };
-    return object;
-  } else {
-    throw 'Error null value as argument :: zeroSalt.js ::';
-  };
-};
+// Convert yyyy-mm-dd to mm-dd-yyyy
+export const toDisplayFormat = date => {
+  let yearString = date.split('-')[0]
+  let monthName = months[parseInt(date.split('-')[1]) -1]
+  let dayString = date.split('-')[2]
+  return `${monthName} ${dayString}, ${yearString}`
+}
 

@@ -1,12 +1,13 @@
 <template>
-   <div id="dateArrowsBar" class="flex flex-row items-center h-fit border-t-[2px] border-nasaBlue">
-      <button id="toYesterdaysImage" :disabled="dateIndex === (props.dates.length - 1)" @click="changeIndex(1)" class="disabled:opacity-75 h-full w-[15%] bg-nasaBlue text-nasaWhite text-center desktop:text-lg desktop:font-bold">&#60</button>
-      <p id="podDate" class="flex-grow text-center font-bold text-sm text-textPrimary tablet:text-base desktop:text-lg">{{ apiImage.date }}</p>
-      <button id="toTomorrowsImage" :disabled="dateIndex === 0" @click="changeIndex(-1)" class="disabled:opacity-75 h-full w-[15%] bg-nasaBlue text-nasaWhite text-center desktop:text-lg desktop:font-bold">&#62</button>
-    </div>
+  <div id="dateArrowsBar" class="flex flex-row items-center h-fit border-t-[2px] border-nasaBlue">
+    <button id="toYesterdaysImage" :disabled="dateIndex === (props.dates.length - 1)" @click="changeIndex(1)" class="disabled:opacity-75 h-full w-[15%] bg-nasaBlue text-nasaWhite text-center desktop:text-lg desktop:font-bold">&#60</button>
+    <p id="podDate" class="flex-grow text-center font-bold text-sm text-textPrimary tablet:text-base desktop:text-lg">{{ toDisplayFormat(apiImage.date) }}</p>
+    <button id="toTomorrowsImage" :disabled="dateIndex === 0" @click="changeIndex(-1)" class="disabled:opacity-75 h-full w-[15%] bg-nasaBlue text-nasaWhite text-center desktop:text-lg desktop:font-bold">&#62</button>
+  </div>
+  <h2 class="mt-[10px] mb-[10px] text-center font-bold text-textPrimary">APOD images range from 06-16-1995 to today</h2>
   <div id="wrapper" class="desktop:grid desktop:grid-cols-[5%_auto_430px_5%] desktop:gap-[10px]">
     <div id="mediaWrapper" v-if="imageExists" class="relative desktop:col-start-2 desktop:self-center desktop:justify-self-center">
-      <img id="podImage" v-if="isImage" :src="apiImage.url" alt="Picture of the Day" class="w-full h-auto max-h-full indent-[100%] whitespace-nowrap overflow-hidden desktop:w-auto desktop:max-h-full"/>
+      <img ref="podImage" v-if="isImage" :src="apiImage.url" alt="Picture of the Day" class="w-full h-auto max-h-full indent-[100%] whitespace-nowrap overflow-hidden desktop:w-auto desktop:max-h-full"/>
       <p id="copyright" v-if="apiImage.copyright" class="absolute bottom-0 text-[0.65rem] leading-tight text-nasaWhite bg-darkGrey/[.6] p-[2px]">Image Credit & Copyright: {{ apiImage.copyright }}</p>
       <iframe id="podVideo" v-if="!isImage" :src="apiImage.url" class="w-full aspect-video indent-[100%] whitespace-nowrap overflow-hidden" ></iframe>
       <p id="noImageMessage" v-if="!imageExists" class="h-[200px] bg-darkGrey text-center text-nasaWhite">{{ noImageMessage }}</p>
@@ -27,19 +28,20 @@
 // IMPORTS & DEPENDENCIES
   import { computed } from 'vue';
   import axios from 'axios';
+  import { toApiFormat, toDisplayFormat } from '../controllers/dateFormatConversions'
  
   const props = defineProps({
     dates: Array, // Contains all dates from 1995-06-16 to present. Each array element is an object | sent from App.vue
     urlDate: String,  // defined by the route path ( /:urlDate ) | from routes/index.js
-    dateIndex: String // is the index of the current date from dates array | sent from App.vue
+    dateIndex: Number // is the index of the current date from dates array | sent from App.vue
   })
 
   const emit = defineEmits(['indexChanged'])
   const noImageMessage ='No image exists on this day'
   let imageExists = true
   let isImage = true
-  let response = Object
   let apiImage = Object
+  let loaded = Boolean
   const currentIndex = computed( () => { return props.dateIndex; } ) // Index of the current date in the dates array
   
   // Sends to parent component the image's currentIndex +/- 1
@@ -54,8 +56,8 @@
     if (typeof props.urlDate === 'undefined') {  // Checks if there is a date in the URL indicating a search for a past image
       serverRes = await axios.get(`${import.meta.env.VITE_SERVER_URL}`)  // Get today's image
     }
-    else {  // Get past image
-      serverRes = await axios.post(`${import.meta.env.VITE_SERVER_URL}`, {date: props.urlDate});
+    else {  // Get past image)
+      serverRes = await axios.post(`${import.meta.env.VITE_SERVER_URL}`, {date: toApiFormat(props.urlDate)});
     }
     if (typeof serverRes.data.media_type !== 'undefined') {
       apiImage = serverRes.data
@@ -75,7 +77,5 @@
     console.log(apiImage)
   }
 
-  await getImage();
-  console.log(`DateIndex == ${currentIndex.value} | from podView created()\n IsImage: ${isImage}`);
-  
+  await getImage()
 </script>

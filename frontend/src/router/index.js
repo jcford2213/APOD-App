@@ -1,7 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import podView from '../views/podView.vue';
-import galleryView from '../views/galleryView.vue';
-import aboutView from '../views/aboutView.vue';
 
 const routes = [
   {
@@ -16,12 +14,6 @@ const routes = [
     props: true, // Accept any route pararmeters as props
     component: podView
   },
-  {
-    path: '/about',
-    name: 'aboutView',
-    props: true,  // Accept any route pararmeters as props
-    component: aboutView
-  }
 ]
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

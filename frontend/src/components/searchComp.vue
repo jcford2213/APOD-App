@@ -7,32 +7,27 @@
   </div>
 </template>
 
-<script>
-  import validateSearch from '../controllers/validateSearch.js';
+<script setup>
+  import getAllDates from '../controllers/getAllDates'; // returns an array of date objects ranging from 06/16/1996 - today
+  import { useRouter } from 'vue-router'
+  const router = useRouter();
 
-  export default {
-    name: 'searchComp',
-    data() {
-      return {
-        placeHolder: 'YYYY-MM-DD',
-        userInput: this.userInput,
-        error: false
-      }
-    },
-    methods: {
-      searchEntered(input) {
-        if (validateSearch(input)) { // validateSearch returns true if input matches regExp \d\d\d\d/-\d\d/-\d\d
-          this.error = false;
-          console.log(`userInput == ${input} | from searchComp searchEntered()`);
-          this.$router.push({ name: 'searchView', params: { urlDate: input } }); 
-          this.userInput = '';
-          return;
-        } else {
-          this.error = true;
-          this.userInput = '';
-          return;
-        }
-      }
+  const placeHolder = 'MM-DD-YYYY';
+  let userInput = '';
+  let allDates = []
+  getAllDates().forEach((date) => {
+    allDates.push(date.string)
+  })
+
+  const searchEntered = input => {
+    if (allDates.includes(input)){
+      console.log(`userInput == ${input} | from searchComp searchEntered()`);
+      router.push(input)
+      return;
+    } else {
+      alert(`Search dates between ${allDates[allDates.length - 1]} and ${allDates[0]}\nFormat Search: YYYY-MM-DD`);
+      return;
     }
   }
+
 </script>
