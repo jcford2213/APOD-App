@@ -1,9 +1,10 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
+import VueSmoothScroll from 'v-smooth-scroll'
 import './index.css'
 
-createApp(App).use(router).mount('#app');
+createApp(App).use(router).use(VueSmoothScroll).mount('#app');
 
 // // Initiate vue application
 // const app = createApp(App)
