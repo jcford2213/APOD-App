@@ -25,7 +25,7 @@
       router.push(input)
       return;
     } else {
-      alert(`Search dates between ${allDates[allDates.length - 1]} and ${allDates[0]}\nFormat Search: YYYY-MM-DD`);
+      alert(`Search dates between ${allDates[allDates.length - 1]} and ${allDates[0]}\nFormat Search: MM-DD-YYYY`);
       return;
     }
   }
