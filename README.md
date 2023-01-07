@@ -6,7 +6,7 @@
 
   Mobile Friendly 
 
-  Tablet and Desktop under construction
+  Tablet and Desktop UI still under construction
 
 ## **Descirption**
   **Frontend**: Vue.js, Tailwind CSS
