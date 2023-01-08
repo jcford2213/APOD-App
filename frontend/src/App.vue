@@ -1,5 +1,6 @@
 <template id="app">
-  <div id="contentWrapper" class="flex flex-col h-screen w-full overflow-scroll bg-[#6b6b6b]">
+  
+  <div id="wrapper" class="flex flex-col min-h-screen h-fit w-full">
     <!--HEADER-->
     <header id="header" class="flex flex-row px-2 bg-nasaWhite">
       <router-link id="appLogo" :to="{ name: 'homeView' }" class="min-w-[143px] font-bold text:base text-nasaBlue">NASA's Astronomy<br>Picture of the Day</router-link>
@@ -7,13 +8,14 @@
         <searchComp class="mx-[10px] caret-nasaBlue text-nasaBlue" />
       </nav>
     </header>
-    <div id="routerWrapper" class="flex-grow w-full">
+    
+    <body id="body" class="flex-grow w-full bg-lightGrey">
       <Suspense>
         <router-view :key="$route.fullPath" :dates="dates" :dateIndex="dateIndex" @indexChanged="setUrlPath"/>
       </Suspense>
-    </div>
-    <footer id="footer" class="flex-none w-full mt-[10px] px-[1px] border-t-[2px] border-nasaBlue desktop:bg-nasaWhite">
-      <p class="text-center text-xs px-2 py-[1px] text-nasaWhite desktop:text-nasaBlue">All images and information provided by NASA's Astonomy Picture of the Day API</p>
+    </body>
+    <footer id="footer" class="flex-none w-full pt-[10px] pb-[10px] px-[1px] border-t-[2px] border-nasaBlue bg-lightGrey desktop:bg-nasaWhite">
+      <p class="text-center text-xs text-nasaWhite desktop:text-nasaBlue">All images and information provided by NASA's Astonomy Picture of the Day open API</p>
     </footer>
   </div>
 
