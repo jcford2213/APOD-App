@@ -19,7 +19,7 @@
         <h4 class="flex-none px-2 font-bold text:sm text-textPrimary desktop:text-lg">Description</h4>
         <hr class="flex-grow self-center text-primary w-full border-[1px] border-nasaBlue">
       </div>
-      <p id="podDescription" class="px-2 text-sm font-medium indent-8 text-textPrimary largeTablet:text-base">{{ apiImage.explanation }}</p>
+      <p id="podDescription" class="px-2 mb-4 text-sm font-medium indent-8 text-textPrimary largeTablet:text-base">{{ apiImage.explanation }}</p>
     </div>
   </div>
 </template>
