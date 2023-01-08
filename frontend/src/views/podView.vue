@@ -7,9 +7,9 @@
   <h2 class="pt-[10px] pb-[10px] text-center font-bold text-textPrimary bg-darkGrey">APOD images range from 06-16-1995 to today</h2>
   <div id="wrapper" class="desktop:grid desktop:grid-cols-[5%_auto_430px_5%] desktop:gap-[10px]">
     <div id="mediaWrapper" v-if="imageExists" class="relative desktop:col-start-2 desktop:self-center desktop:justify-self-center">
-      <img ref="podImage" v-if="isImage" :src="apiImage.url" alt="Picture of the Day" class="w-full h-auto max-h-full indent-[100%] whitespace-nowrap overflow-hidden desktop:w-auto desktop:max-h-full"/>
+      <img ref="podImage" v-if="isImage" :src="apiImage.url" alt="Picture of the Day" class="w-full h-auto max-h-full indent-[100%] whitespace-nowrap desktop:w-auto desktop:max-h-full"/>
       <p id="copyright" v-if="apiImage.copyright" class="absolute bottom-0 text-[0.65rem] leading-tight text-nasaWhite bg-darkGrey/[.6] p-[2px]">Image Credit & Copyright: {{ apiImage.copyright }}</p>
-      <iframe id="podVideo" v-if="!isImage" :src="apiImage.url" class="w-full aspect-video indent-[100%] whitespace-nowrap overflow-hidden" ></iframe>
+      <iframe id="podVideo" v-if="!isImage" :src="apiImage.url" class="w-full aspect-video indent-[100%] whitespace-nowrap" ></iframe>
       <p id="noImageMessage" v-if="!imageExists" class="h-[200px] bg-darkGrey text-center text-nasaWhite">{{ noImageMessage }}</p>
     </div>
     <div id="descriptionContainer" class="desktop:col-start-3 desktop:justify-self-start">

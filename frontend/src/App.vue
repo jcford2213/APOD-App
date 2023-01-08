@@ -1,23 +1,20 @@
 <template id="app">
-  <div id="windowWrapper" class="sticky min-w-[350px] bg-darkGrey">
-    <div id="contentWrapper" class="flex flex-col h-screen w-full overflow-scroll bg-[#6b6b6b]">
-      <!--HEADER-->
-      <header id="header" class="flex flex-row px-2 bg-nasaWhite">
-        <router-link id="appLogo" :to="{ name: 'homeView' }" class="min-w-[143px] font-bold text:base text-nasaBlue">NASA's Astronomy<br>Picture of the Day</router-link>
-        <nav id="nav" class="flex-grow flex flex-row place-items-center justify-end">
-          <searchComp class="mx-[10px] caret-nasaBlue text-nasaBlue" />
-        </nav>
-      </header>
-      <div id="routerWrapper" class="flex-grow w-full">
-        <Suspense>
-          <router-view :key="$route.fullPath" :dates="dates" :dateIndex="dateIndex" @indexChanged="setUrlPath"/>
-        </Suspense>
-      </div>
-      <footer id="footer" class="flex-none w-full mt-[10px] px-[1px] border-t-[2px] border-nasaBlue desktop:bg-nasaWhite">
-        <p class="text-center text-xs px-2 py-[1px] text-nasaWhite desktop:text-nasaBlue">All images and information provided by NASA's Astonomy Picture of the Day API</p>
-      </footer>
+  <div id="contentWrapper" class="flex flex-col h-screen w-full overflow-scroll bg-[#6b6b6b]">
+    <!--HEADER-->
+    <header id="header" class="flex flex-row px-2 bg-nasaWhite">
+      <router-link id="appLogo" :to="{ name: 'homeView' }" class="min-w-[143px] font-bold text:base text-nasaBlue">NASA's Astronomy<br>Picture of the Day</router-link>
+      <nav id="nav" class="flex-grow flex flex-row place-items-center justify-end">
+        <searchComp class="mx-[10px] caret-nasaBlue text-nasaBlue" />
+      </nav>
+    </header>
+    <div id="routerWrapper" class="flex-grow w-full">
+      <Suspense>
+        <router-view :key="$route.fullPath" :dates="dates" :dateIndex="dateIndex" @indexChanged="setUrlPath"/>
+      </Suspense>
     </div>
-
+    <footer id="footer" class="flex-none w-full mt-[10px] px-[1px] border-t-[2px] border-nasaBlue desktop:bg-nasaWhite">
+      <p class="text-center text-xs px-2 py-[1px] text-nasaWhite desktop:text-nasaBlue">All images and information provided by NASA's Astonomy Picture of the Day API</p>
+    </footer>
   </div>
 
 </template>
