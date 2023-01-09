@@ -8,9 +8,10 @@ const router = express.Router();
 router.get('/', async (req, res) => {
   console.log('Router received get request')
   const image = await getTodaysImage()  // Returns an object. Gets todays APOD data 
+    .then()
     .catch(error => {
       console.log(`Error in router.get\n   Error message: ${error.message}`)
-      res.send(`ERROR\nMessage: ${error.message}`)
+      res.send(`Error: ${error.message}`)
     })
   res.send(image)
   console.log('Sent image to client')

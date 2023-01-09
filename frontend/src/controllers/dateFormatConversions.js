@@ -19,16 +19,16 @@ const months = [
 
 // Convert mmm-dd-yyyy to yyyy-mm-dd
 export const toApiFormat = date => {
-  let yearString = date.split('-')[2]
-  let remainderString = `${date.split('-')[0]}-${date.split('-')[1]}`
-  return `${yearString}-${remainderString}`
+  let yearString = date.split('-')[2] // Selects 'yyyy' from 'mm-dd-yyy'
+  let remainderString = `${date.split('-')[0]}-${date.split('-')[1]}` // selects 'mm' and determines the month name
+  return `${yearString}-${remainderString}` // return 'yyyy-mm-dd'
 }
 
 // Convert yyyy-mm-dd to mm-dd-yyyy
 export const toDisplayFormat = date => {
-  let yearString = date.split('-')[0]
-  let monthName = months[parseInt(date.split('-')[1]) -1]
-  let dayString = date.split('-')[2]
-  return `${monthName} ${dayString}, ${yearString}`
+  let yearString = date.split('-')[0] // Selects 'yyyy' from 'yyyy-mm-dd'
+  let monthName = months[parseInt(date.split('-')[1]) -1] // selects 'mm' and determines the month name
+  let dayString = date.split('-')[2]  // selects 'dd' from 'yyyy-mm-dd'
+  return `${monthName} ${dayString}, ${yearString}` // return 'Month dd, yyy'
 }
 

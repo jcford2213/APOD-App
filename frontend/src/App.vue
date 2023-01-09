@@ -48,7 +48,10 @@
     },
 // COMPUTED
     computed: {
-      // Tracks the 
+      // Checks current image date 
+      // Compare that date to dates in date array
+      // Returns the matching index from dates array 
+      // Sends the index to podView as a prop
       dateIndex () {
         let path = decodeURIComponent(this.$route.fullPath);
         path = path.replace('/', '');
@@ -67,37 +70,18 @@
       handleView() { 
         this.mobileView = window.innerWidth <= 750; 
       },
-      // Toggles whether mobile naviigtion is visible
-      // Is triggered by fabars dropdown button
-      toggleNavVisibility() {
-        switch(this.mobileNavVisibility) {
-          case false: // Nav isn't visible
-            this.mobileNavVisibility = true;  // Shows nav on click
-          break;
-          case true:  // Nav is visible
-            this.mobileNavVisibility = false; // Hides nav on click
-          break;
-        }
-        console.log(`mobileNavVisibility = ${this.mobileNavVisibility}`)
-      },
       // Sets the url path for based on the image date
       setUrlPath(index) {
         console.log(this.dates[index].string)
-        router.push({ name: 'searchView', params: { urlDate: this.dates[index].string } });
+        router.push({ name: 'podView', params: { urlDate: this.dates[index].string } });
       }
     },
 
 // CREATED
     created() {
-      console.log(`Number of images/videos = ${this.dates.length} | from App.vue created()`);
       // Checks screen width and sets this.mobileView
       this.handleView();
       window.addEventListener('resize', this.handleView);
-    },
-// MOUNTED
-    mounted() {
-      console.log(`$route == ${decodeURIComponent(this.$route.fullPath)} | from App.vue mounted()`);
-      console.log(`DateIndex == ${this.dateIndex} | from App.vue mounted()`);
     }
   }
 </script>

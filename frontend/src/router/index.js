@@ -10,10 +10,10 @@ const routes = [
   },
   {
     path: '/:urlDate',
-    name: 'searchView',
+    name: 'podView',
     props: true, // Accept any route pararmeters as props
     component: podView
-  },
+  }
 ]
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

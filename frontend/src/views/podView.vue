@@ -10,9 +10,9 @@
       <img ref="podImage" v-if="isImage" :src="apiImage.url" alt="Picture of the Day" class="w-full h-auto max-h-full indent-[100%] whitespace-nowrap desktop:w-auto desktop:max-h-full"/>
       <p id="copyright" v-if="apiImage.copyright" class="absolute bottom-0 text-[0.65rem] leading-tight text-nasaWhite bg-darkGrey/[.6] p-[2px]">Image Credit & Copyright: {{ apiImage.copyright }}</p>
       <iframe id="podVideo" v-if="!isImage" :src="apiImage.url" class="w-full aspect-video indent-[100%] whitespace-nowrap" ></iframe>
-      <p id="noImageMessage" v-if="!imageExists" class="h-[200px] bg-darkGrey text-center text-nasaWhite">{{ noImageMessage }}</p>
     </div>
-    <div id="descriptionContainer" class="desktop:col-start-3 desktop:justify-self-start">
+    <h1 id="noImageMessage" v-if="!imageExists" class="col-span-full mt-[10px] text-lg text-center text-nasaWhite">{{ apiImage.message }}</h1>
+    <div id="descriptionContainer" v-if="imageExists" class="desktop:col-start-3 desktop:justify-self-start">
       <p id="podTitle" class="h-fit text-center font-bold pt-[10px] text-textPrimary tablet:text-lg desktop:row-start-1 desktop:col-start-2">{{ apiImage.title }}</p>
       <div id="hrDescriptionBar" class="flex py-[10px] text-sm">
         <hr class="flex-grow self-center text-primary w-full border-[1px] border-nasaBlue">
@@ -37,11 +37,9 @@
   })
 
   const emit = defineEmits(['indexChanged'])
-  const noImageMessage ='No image exists on this day'
   let imageExists = true
   let isImage = true
   let apiImage = Object
-  let loaded = Boolean
   const currentIndex = computed( () => { return props.dateIndex; } ) // Index of the current date in the dates array
   
   // Sends to parent component the image's currentIndex +/- 1
@@ -51,18 +49,18 @@
   }
 
   const getImage = async () => {
-    let serverRes;
-   // serverRes = await axios.get(`${import.meta.env.VITE_SERVER_URL}`)  // Get today's image
+    let serverResult;
+
     if (typeof props.urlDate === 'undefined') {  // Checks if there is a date in the URL indicating a search for a past image
-      serverRes = await axios.get(`${import.meta.env.VITE_SERVER_URL}`)  // Get today's image
+      serverResult = await axios.get(`${import.meta.env.VITE_SERVER_URL}`)  // Get today's image
     }
     else {  // Get past image)
-      serverRes = await axios.post(`${import.meta.env.VITE_SERVER_URL}`, {date: toApiFormat(props.urlDate)});
+      serverResult = await axios.post(`${import.meta.env.VITE_SERVER_URL}`, { date: toApiFormat(props.urlDate) })
     }
-    if (typeof serverRes.data.media_type !== 'undefined') {
-      apiImage = serverRes.data
+    if (typeof serverResult.data.media_type !== 'undefined') {
+      apiImage = serverResult.data
     // Display either image or video
-      switch (serverRes.data.media_type) {
+      switch (serverResult.data.media_type) {
         case 'image':
           isImage = true;
           break;
@@ -70,11 +68,13 @@
           isImage = false
           break;
       }
-    } else {
-      apiImage.date = props.dates[props.dateIndex].string;
+    } 
+    else {
+      apiImage.date = toApiFormat(props.urlDate);
+      apiImage.message = `No image exists for date: ${props.urlDate}`;
       imageExists = false;
     }
-    console.log(apiImage)
+
   }
 
   await getImage()
