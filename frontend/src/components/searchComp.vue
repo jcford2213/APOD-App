@@ -24,8 +24,8 @@
   const searchEntered = input => {
     if (allDates.includes(input)){
       console.log(`userInput == ${input} | from searchComp searchEntered()`);
-      input = ''
       router.push(input)
+      input = ''
       return;
     } else {
       alert(`Search dates between ${allDates[allDates.length - 1]} and ${allDates[0]}\nFormat Search: MM-DD-YYYY`);
