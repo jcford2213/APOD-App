@@ -2,18 +2,18 @@
   
   <div id="wrapper" class="flex flex-col min-h-screen h-fit w-full">
     <!--HEADER-->
-    <header id="header" class="flex flex-row px-2 bg-nasaWhite">
+    <header id="header" class="flex flex-row px-2 bg-nasaWhite desktop:mx-[13.5%]">
       <router-link id="appLogo" :to="{ name: 'homeView' }" class="min-w-[143px] font-bold text:base text-nasaBlue">NASA's Astronomy<br>Picture of the Day</router-link>
       <nav id="nav" class="flex-grow flex flex-row place-items-center justify-end">
         <searchComp class="mx-[10px] caret-nasaBlue text-nasaBlue" />
       </nav>
     </header>
     
-    <body id="body" class="flex-grow w-full bg-lightGrey">
+    <main class="flex-grow w-full bg-lightGrey desktop:px-[13.5%]">
       <Suspense>
         <router-view :key="$route.fullPath" :dates="dates" :dateIndex="dateIndex" @indexChanged="setUrlPath"/>
       </Suspense>
-    </body>
+    </main>
     <footer id="footer" class="flex-none w-full pt-[10px] pb-[10px] px-[1px] border-t-[2px] border-nasaBlue bg-lightGrey desktop:bg-nasaWhite">
       <p class="text-center text-xs text-nasaWhite desktop:text-nasaBlue">All images and information provided by NASA's Astonomy Picture of the Day open API</p>
     </footer>
