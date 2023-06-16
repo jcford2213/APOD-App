@@ -1,11 +1,30 @@
 <template>
   <div id="dateArrowsBar" class="flex flex-row items-center h-fit border-t-[2px] border-nasaBlue">
-    <button id="toYesterdaysImage" :disabled="dateIndex === (props.dates.length - 1)" @click="changeIndex(1)" class="disabled:opacity-40 disabled:font-thin h-full w-[15%] bg-nasaBlue text-nasaWhite font-bold text-center desktop:text-lg desktop:font-bold">&#60</button>
-    <p id="podDate" class="flex-grow text-center font-bold text-sm text-textPrimary tablet:text-base desktop:text-lg ">{{ toDisplayFormat(apiImage.date) }}</p>
-    <button id="toTomorrowsImage" :disabled="dateIndex === 0" @click="changeIndex(-1)" class="disabled:opacity-40 disabled:font-thin h-full w-[15%] bg-nasaBlue text-nasaWhite font-bold text-center desktop:text-lg desktop:font-bold">&#62</button>
+    <button 
+      id="toYesterdaysImage"
+      :disabled="dateIndex === (props.dates.length - 1)"
+      @click="changeIndex(1)"
+      class="disabled:opacity-40 disabled:font-thin h-full w-[15%] bg-nasaBlue text-nasaWhite font-bold text-center desktop:text-lg desktop:font-bold"
+    >&#60
+    </button>
+    <p
+      id="podDate"
+      class="flex-grow text-center font-bold text-sm text-textPrimary tablet:text-base desktop:text-lg "
+    >{{ toDisplayFormat(apiImage.date) }}
+    </p>
+    <button
+      id="toTomorrowsImage"
+      :disabled="dateIndex === 0"
+      @click="changeIndex(-1)"
+      class="disabled:opacity-40 disabled:font-thin h-full w-[15%] bg-nasaBlue text-nasaWhite font-bold text-center desktop:text-lg desktop:font-bold"
+    >&#62
+    </button>
   </div>
   <h2 class="pt-[10px] pb-[10px] text-center font-bold text-textPrimary bg-darkGrey">APOD images range from 06-16-1995 to today</h2>
-  <div id="wrapper" class="desktop:grid desktop:grid-cols-[5%_auto_430px_5%] desktop:gap-[10px]">
+  <div
+    id="wrapper"
+    class="desktop:grid desktop:grid-cols-[5%_auto_430px_5%] desktop:gap-[10px]"
+  >
     <div id="mediaWrapper" v-if="imageExists" class="relative desktop:col-start-2 desktop:self-center desktop:justify-self-center">
       <img ref="podImage" v-if="isImage" :src="apiImage.url" alt="Picture of the Day" class="w-full h-auto max-h-full indent-[100%] whitespace-nowrap desktop:w-auto desktop:max-h-full"/>
       <p id="copyright" v-if="apiImage.copyright" class="absolute bottom-0 text-[0.65rem] leading-tight text-nasaWhite bg-darkGrey/[.6] p-[2px]">Image Credit & Copyright: {{ apiImage.copyright }}</p>
@@ -48,6 +67,7 @@
     emit ('indexChanged', (currentIndex.value + increment));
   }
 
+
   const getImage = async () => {
     let serverResult;
 
@@ -75,7 +95,7 @@
       imageExists = false;
     }
 
-  }
-
+  };
+  
   await getImage()
 </script>

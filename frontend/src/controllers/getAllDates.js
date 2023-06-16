@@ -1,7 +1,5 @@
 // Returns an array of date objects {year: num, month: num, day: num} 
 // default date object is 06-16-1995
-// 
-
 
 // Check if a year is a leap year. Returns true if year is a leap year
 const isLeapYear = year => {

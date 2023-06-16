@@ -5,7 +5,7 @@
     <header id="header" class="flex flex-row px-2 bg-nasaWhite desktop:mx-[13.5%]">
       <router-link id="appLogo" :to="{ name: 'homeView' }" class="min-w-[143px] font-bold text:base text-nasaBlue">NASA's Astronomy<br>Picture of the Day</router-link>
       <nav id="nav" class="flex-grow flex flex-row place-items-center justify-end">
-        <searchComp class="mx-[10px] caret-nasaBlue text-nasaBlue" />
+        <searchBarComp class="mx-[10px] caret-nasaBlue text-nasaBlue" />
       </nav>
     </header>
     
@@ -24,7 +24,7 @@
 <script> // 'script setup' is recommended syntax for SFC's. Provides several advantages over 'script'
 // COMPONENTS
   import podView from './views/podView.vue';
-  import searchComp from './components/searchComp.vue';
+  import searchBarComp from './components/searchBarComp.vue';
 
 // IMPORTS & DEPENDENCIES
   import getAllDates from './controllers/getAllDates';
@@ -36,7 +36,7 @@
     name: 'App',
     components: {
       podView,
-      searchComp
+      searchBarComp
   },
 // DATA
     data() {
